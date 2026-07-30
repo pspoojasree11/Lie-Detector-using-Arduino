@@ -1,0 +1,23 @@
+
+int sensorPin = A0;  // Analog pin for sensor
+int threshold = 500;  // Threshold for detecting stress
+int sensorValue = 0;
+
+void setup() {
+  Serial.begin(9600);  // Start serial communication
+  pinMode(13, OUTPUT);  // Buzzer pin
+}
+
+void loop() {
+  sensorValue = analogRead(sensorPin);  // Read sensor value
+  
+  if (sensorValue > threshold) {
+    digitalWrite(13, HIGH);  // Turn on buzzer if lie detected
+    Serial.println("Lie Detected!");
+  } else {
+    digitalWrite(13, LOW);  // Turn off buzzer
+    Serial.println("No Lie Detected.");
+  }
+  
+  delay(1000);  // Wait for a second before reading again
+}
